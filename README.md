@@ -1,5 +1,6 @@
 # Disperse
 
+An app that promotes COVID-19 social distancing by redirecting users to the least crowded establishments in their area, powered by aggregated, real-time dispersion data \
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
 
 ## Development server
