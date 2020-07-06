@@ -1,16 +1,14 @@
 <div class="container places-search-container">
-  <form (submit)="onSubmit()">
-    <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Search for places...">
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary search-button" type="submit">
-          Search
-        </button>
-      </div>
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Search for places..." [(ngModel)]="searchQuery" (keyup.enter)="onSubmit()">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary search-button" type="button" (click)="onSubmit()">
+        Search
+      </button>
     </div>
-  </form>
+  </div>
   <br>
-  <h3>Popular Places</h3>
+  <h3>Popular Place Categories</h3>
   <br>
   <div class="grid row">
     <div class="col-6 col-md-4 col-lg-2" *ngFor="let popular_place of popular_places">
@@ -21,7 +19,7 @@
     </div>
   </div>
   <br>
-  <h3>All Places</h3>
+  <h3>All Place Categories</h3>
   <br>
   <div class="grid row place-type-grid">
     <div class="col-6 col-md-4 col-xl-3" *ngFor="let place_type of place_types">
