@@ -1,0 +1,71 @@
+.places-search-container {
+  margin-top: 20px;
+}
+
+.popular-place-icon {
+  color: #F0E68C;
+  font-size: 72px;
+  transition: 0.3s ease all;
+}
+
+.popular-place-card {
+  text-align: center;
+  padding: 10px 5px;
+  margin-bottom: 20px;
+  border: 1px solid #F0E68C;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.popular-place-card:hover {
+  background: #F0E68C;
+
+  .popular-place-icon {
+    color: white !important;
+  }
+}
+
+.place-type-card {
+  padding: 10px;
+  border-bottom: 0;
+  transition: 0.2s ease all;
+  cursor: pointer;
+
+  .material-icons {
+    margin-right: 10px;
+    font-size: 24px !important;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .place-type-name {
+    font-size: 16px !important;
+    position: relative;
+    bottom: 5px;
+    text-overflow: ellipsis !important;
+  }
+
+  &:hover {
+    //background: #55595C;
+    background: #F0E68C;
+  }
+}
+
+.place-type-grid .col-6:nth-last-child(-n+4) .place-type-card {
+  border-bottom: 1px solid #DFDFDF;
+}
+
+.place-type-name-container {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.search-button {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
