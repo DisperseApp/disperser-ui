@@ -29,15 +29,15 @@ export class PlacesSearchComponent implements OnInit, OnDestroy {
   ) { }
 
   searchByType(type: string) {
-    this.globalRoutingDataService.setSearchQuery(null);
+    this.globalRoutingDataService.resetFields();
     this.globalRoutingDataService.setType(type);
     this.router.navigate(['/search']);
   }
 
   onSubmit() {
     if (this.searchQuery && this.searchQuery !== '') {
+      this.globalRoutingDataService.resetFields();
       this.globalRoutingDataService.setSearchQuery(this.searchQuery);
-      this.globalRoutingDataService.setType(null);
       this.router.navigate(['/search']);
     }
   }

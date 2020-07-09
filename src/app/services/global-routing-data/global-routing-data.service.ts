@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class GlobalRoutingDataService {
   private searchQuery: string = null;
+  //private searchQuery: string = 'Walmart';
   private type: string = null;
 
   getSearchQuery(): string {
@@ -21,6 +22,11 @@ export class GlobalRoutingDataService {
 
   setType(t: string): void {
     this.type = t;
+  }
+
+  resetFields(): void {
+    this.searchQuery = null;
+    this.type = null;
   }
 
   constructor() { }

@@ -13,6 +13,8 @@ export class LocationService {
 
       if ('geolocation' in navigator) {
         watchId = navigator.geolocation.watchPosition((position: Position) => {
+          console.log('Location received');
+          console.log(position.coords.latitude, position.coords.longitude);
           observer.next(position);
         }, (error: PositionError) => {
           observer.error(error);

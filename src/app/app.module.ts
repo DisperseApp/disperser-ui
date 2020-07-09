@@ -11,6 +11,8 @@ import { SearchComponent } from './components/search/search.component';
 import { FormsModule } from "@angular/forms";
 import { GlobalRoutingDataService } from "./services/global-routing-data/global-routing-data.service";
 import { HttpClientModule } from "@angular/common/http";
+import { ApiKeyProviderService } from "./services/api-key-provider/api-key-provider.service";
+import { PlacesService } from "./services/places/places.service";
 
 @NgModule({
   declarations: [
@@ -26,9 +28,11 @@ import { HttpClientModule } from "@angular/common/http";
     FormsModule
   ],
   providers: [
+    ApiKeyProviderService,
     ListDataService,
     LocationService,
-    GlobalRoutingDataService
+    GlobalRoutingDataService,
+    PlacesService
   ],
   bootstrap: [AppComponent]
 })

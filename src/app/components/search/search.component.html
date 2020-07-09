@@ -9,4 +9,35 @@
   </div>
   <br>
   <h5>{{displayHeader(originalSearchQuery, originalPlaceType)}}</h5>
+  <br>
+  <div class="card place-card"
+       *ngFor="let place of searchResultsData;">
+    <div class="card-body">
+      <h1 class="card-title">{{place.poi.name}}</h1>
+      <h5 class="card-subtitle mb-2 text-muted">{{place.address.freeformAddress}}</h5>
+      <div class="card-description place-badges">
+        <br>
+        <div>
+          <table class="place-information">
+            <tr [hidden]="!place.dist">
+              <td><span class="material-icons">navigation</span></td>
+              <td class="info">{{ metersToMiles(place.dist) | number: '1.1-1' }} miles away</td>
+            </tr>
+            <tr [hidden]="!place.poi.phone">
+              <td><span class="material-icons">phone</span></td>
+              <td class="info">{{ formattedPhoneNumber(place.poi.phone) }}</td>
+            </tr>
+            <tr [hidden]="!place.poi.url">
+              <td><span class="material-icons">link</span></td>
+              <td class="info"><a href="{{place.poi.url}}" target="_blank">{{ shortUrl(place.poi.url) }} &#8599;<br></a></td>
+            </tr>
+          </table>
+        </div>
+        <br>
+        <span class="badge badge-primary" *ngFor="let category of place.poi.categories;">{{category}}</span>
+      </div>
+<!--      <a href="#" class="card-link">Save</a>-->
+<!--      <a href="#" class="card-link">Edit</a>-->
+    </div>
+  </div>
 </div>

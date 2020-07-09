@@ -21,24 +21,13 @@ export class PlacesService {
       "?key=" + this.apiKeyProviderService.getTomtomAPIKey() +
       "&lat=" + latitude +
       "&lon=" + longitude;
-      //"&radius=<radius>" +
-      //"[&limit=<limit>]" +
-      //"[&ofs=<ofs>]" +
-      //"[&countrySet=<countrySet>]" +
-      //"[&topLeft=<topLeft>]" + // Deprecated
-      //"[&btmRight=<btmRight>]" + // Deprecated
-      //"[&language=<language>]" +
-      //"[&extendedPostalCodesFor=<extendedPostalCodesFor>]" +
-      //"[&categorySet=<categorySet>]" +
-      //"[&brandSet=<brandSet>]" +
-      //"[&connectorSet=<connectorSet>]" +
-      //"[&fuelSet=<fuelSet>]" +
-      //"[&view=<view>]" +
-      //"[&openingHours=<openingHours>]" +
-      //"[&timeZone=<timeZone>]" +
-      //"[&mapcodes=<mapcodes>]" +
-      //"[&relatedPois=<relatedPois>]";
 
+    return this.http.get(url);
+  }
+
+  getFuzzySearchResults(latitude: number, longitude: number, searchQuery: string): Observable<any> {
+    if (!latitude || !longitude || !searchQuery) return null;
+    const url = `https://api.tomtom.com/search/2/search/${searchQuery}.json?lat=${latitude}&lon=${longitude}&limit=20&idxSet=POI&key=${this.apiKeyProviderService.getTomtomAPIKey()}`;
     return this.http.get(url);
   }
 }
