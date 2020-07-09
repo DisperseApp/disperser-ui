@@ -28,6 +28,12 @@ export class PlacesSearchComponent implements OnInit, OnDestroy {
     private globalRoutingDataService: GlobalRoutingDataService
   ) { }
 
+  searchByType(type: string) {
+    this.globalRoutingDataService.setSearchQuery(null);
+    this.globalRoutingDataService.setType(type);
+    this.router.navigate(['/search']);
+  }
+
   onSubmit() {
     if (this.searchQuery && this.searchQuery !== '') {
       this.globalRoutingDataService.setSearchQuery(this.searchQuery);

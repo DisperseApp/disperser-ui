@@ -12,7 +12,7 @@
   <br>
   <div class="grid row">
     <div class="col-6 col-md-4 col-lg-2" *ngFor="let popular_place of popular_places">
-      <div class="card popular-place-card">
+      <div class="card popular-place-card" (click)="searchByType(popular_place.places_api_type)">
         <span class="material-icons popular-place-icon">{{popular_place.material_icon_name}}</span>
         <span class="popular-place-name">{{popular_place.name}}</span>
       </div>
@@ -23,7 +23,7 @@
   <br>
   <div class="grid row place-type-grid">
     <div class="col-6 col-md-4 col-xl-3" *ngFor="let place_type of place_types">
-      <div class="card place-type-card">
+      <div class="card place-type-card" (click)="searchByType(place_type.place_api_type)">
         <span class="place-type-name-container">
           <span class="material-icons">{{place_type.material_icon_name}}</span>
           <span class="place-type-name">{{place_type.name}}</span>
