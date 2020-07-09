@@ -18,7 +18,7 @@ export class ListDataService {
   getPluralName(type) {
     for (let placeType of this.placeTypes) {
       if (placeType.place_api_type === type) {
-        return placeType.name;
+        return placeType.full_name || placeType.name;
       }
     }
     return type;

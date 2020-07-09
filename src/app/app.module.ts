@@ -10,6 +10,7 @@ import { LocationService } from "./services/location/location.service";
 import { SearchComponent } from './components/search/search.component';
 import { FormsModule } from "@angular/forms";
 import { GlobalRoutingDataService } from "./services/global-routing-data/global-routing-data.service";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { GlobalRoutingDataService } from "./services/global-routing-data/global-
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule
   ],

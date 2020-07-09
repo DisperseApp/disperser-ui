@@ -11,7 +11,6 @@ export class LocationService {
     this.locationsSubscription = new Observable(observer => {
       let watchId: number;
 
-      // Simple geolocation API check provides values to publish
       if ('geolocation' in navigator) {
         watchId = navigator.geolocation.watchPosition((position: Position) => {
           observer.next(position);
@@ -22,7 +21,6 @@ export class LocationService {
         observer.error('Geolocation not available');
       }
 
-      // When the consumer unsubscribes, clean up data ready for next subscription.
       return {
         unsubscribe() {
           navigator.geolocation.clearWatch(watchId);

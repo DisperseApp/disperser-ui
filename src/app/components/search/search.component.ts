@@ -24,12 +24,18 @@ export class SearchComponent implements OnInit, OnDestroy {
   displayHeader(searchQuery: string, placeType: string) {
     const pluralType = this.listDataService.getPluralName(placeType);
 
-    if (searchQuery === null && placeType === null)
+    if (searchQuery !== null && placeType !== null)
       return `You searched for ${pluralType} named "${searchQuery}".`;
     if (searchQuery === null)
       return `You searched for ${pluralType}.`;
     if (placeType === null)
       return `You searched for "${searchQuery}".`;
+
+    return '';
+  }
+
+  displaySearchResults() {
+
   }
 
   onInit() {

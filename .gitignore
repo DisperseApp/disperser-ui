@@ -44,3 +44,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# secure info
+/src/app/services/api-key-provider/api-key-provider.service.ts
+/src/app/services/api-key-provider/api-key-provider.service.spec.ts

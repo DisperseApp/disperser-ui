@@ -37,6 +37,7 @@ export class PlacesSearchComponent implements OnInit, OnDestroy {
   onSubmit() {
     if (this.searchQuery && this.searchQuery !== '') {
       this.globalRoutingDataService.setSearchQuery(this.searchQuery);
+      this.globalRoutingDataService.setType(null);
       this.router.navigate(['/search']);
     }
   }
