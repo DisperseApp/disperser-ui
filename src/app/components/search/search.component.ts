@@ -25,6 +25,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   private placesSubscription: Subscription;
   private locationSubscription: Subscription;
+  private placeInformationSubscription: Subscription;
 
   searchResultsData: any[] = [];
   searchResultsLoaded: boolean = false;
@@ -62,6 +63,12 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.placesSubscription.unsubscribe();
     if (this.locationSubscription)
       this.locationSubscription.unsubscribe();
+    if (this.placeInformationSubscription)
+      this.placeInformationSubscription.unsubscribe();
+
+    for (let place of this.searchResultsData)
+      if (place.placeInformationSubscription)
+        place.placeInformationSubscription.unsubscribe();
   }
 
   // Initialization methods
@@ -103,14 +110,49 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.placesSubscription = this.placesService.getFuzzySearchResults(this.latitude, this.longitude, this.searchQuery)
       .subscribe((data: Config) => {
         thisComponent.searchResultsData = data['results'];
+        this.displayAllPlaceInformation();
+        let placeIndex = 0;
         for (let place of thisComponent.searchResultsData) {
           if (place.poi.url) {
             place.poi.url = this.createFullUrl(place.poi.url);
           }
+          placeIndex++;
         }
         console.log(thisComponent.searchResultsData);
-      })
+      });
   }
+
+  private displayAllPlaceInformation() {
+    let placesArr = [];
+    for (let place of this.searchResultsData) {
+      placesArr.push({
+        name: place.poi.name,
+        address: place.address.freeformAddress
+      });
+    }
+
+    let thisComponent = this;
+    this.placeInformationSubscription = this.placesService.getAllInfoAboutPlaces(placesArr)
+      .subscribe((data: Config) => {
+        for (let searchPlace of thisComponent.searchResultsData) {
+          for (let scraperPlace of (data as unknown as any[])) {
+            if ((searchPlace.poi.name === scraperPlace.query.name) &&
+                (searchPlace.address.freeformAddress === scraperPlace.query.address)) {
+              searchPlace.googleInfo = scraperPlace;
+            }
+          }
+        }
+        console.log(thisComponent.searchResultsData);
+      });
+  }
+
+  // private displayPlaceInformationResults(index: number) {
+  //   const place = this.searchResultsData[index];
+  //   this.searchResultsData['placeInformationSubscription'] = this.placesService.getPlacesAPIInfoAboutPlace(place.poi.name, place.address.freeformAddress)
+  //     .subscribe((data: Config) => {
+  //       console.log(data);
+  //     });
+  // }
 
   // UI Methods
   displayHeader(searchQuery: string, placeType: string) {
@@ -132,7 +174,6 @@ export class SearchComponent implements OnInit, OnDestroy {
       fullUrl = 'http://' + incompleteUrl;
     }
     else fullUrl = incompleteUrl;
-    console.log(fullUrl);
     return fullUrl;
   }
 
